@@ -35,11 +35,12 @@ class Common(commands.Cog):
             color=discord.Color.orange()
         )
         embed.add_field(name="Reason:", value=reason)
-        embed.add_field(name="Sent:", value=ctx.author.name)
+        embed.add_field(name="Sent by:", value=ctx.author.name)
+        embed.add_field(name="Link for message:", value=f"[Go to message]({ctx.message.jump_url})", inline=False)
 
         await report_channel.send(embed=embed)
         await ctx.message.delete()
-        await ctx.send("Report sent. Thanks!", delete_after=5)
+        await ctx.send("Report sent. Thanks!", delete_after=4)
 
 async def setup(bot):
     await bot.add_cog(Common(bot))
