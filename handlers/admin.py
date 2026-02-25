@@ -18,7 +18,7 @@ class Admin(commands.Cog):
 
     @commands.command(name="mute")
     @commands.has_any_role("admin", "moderator")
-    async def timeout(self, ctx, member: discord.Member, minutes: int, reason:str):
+    async def timeout(self, ctx, member: discord.Member, minutes: int, *, reason:str):
         duration = datetime.timedelta(minutes=minutes)
         try:
             await member.timeout(duration, reason=reason)
