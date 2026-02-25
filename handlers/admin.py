@@ -39,7 +39,7 @@ class Admin(commands.Cog):
     @commands.has_permissions(moderate_members=True)
     async def unmute(self, ctx, member: discord.Member):
         await member.timeout(None)
-        await ctx.send(f"{member.mention} can write.")
+        await ctx.send(f"{member.mention} can has been unmuted.")
     @timeout.error
     async def timeout_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
