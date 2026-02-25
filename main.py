@@ -23,7 +23,6 @@ async def main():
         await load_extensions()
         await bot.start(TOKEN)
 
-# Запускаем асинхронную функцию
 if __name__ == "__main__":
     try:
         asyncio.run(main())
