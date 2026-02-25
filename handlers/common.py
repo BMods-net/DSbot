@@ -7,11 +7,10 @@ class Common(commands.Cog):
 
     @commands.command(name="test")
     async def test(self, ctx):
-        await ctx.send("Nothing for now...")
-
-    @commands.command(name="repos")
-    async def test(self, ctx):
-        await ctx.send("Nothing for now...")
+        await ctx.send(f"Nothing for now...\n"
+                       f"tedt\n"
+                       f"fafwdgryg\n",
+                       delete_after=5)
 
 async def setup(bot):
     await bot.add_cog(Common(bot))
