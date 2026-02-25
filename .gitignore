@@ -1,6 +1,5 @@
 .env
 config.json
-secrets.py
 
 venv/
 .venv/
