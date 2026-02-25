@@ -13,14 +13,7 @@ class Common(commands.Cog):
         if report_channel_id:
             self.report_channel_id = int(report_channel_id)
         else:
-            print("Report channel id is not found")
-
-    @commands.command(name="test")
-    async def test(self, ctx):
-        await ctx.send(f"Nothing for now...\n"
-                       f"tedt\n"
-                       f"fafwdgryg\n",
-                       delete_after=5)
+            print("Report channel id is not found.")
 
     @commands.command(name="reportm")
     async def report(self, ctx, member: discord.Member, *, reason:str):
