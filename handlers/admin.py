@@ -36,7 +36,7 @@ class Admin(commands.Cog):
             await ctx.send(f"Can't mute: {e}")
 
     @commands.command(name="unmute")
-    @commands.has_permissions(moderate_members=True)
+    @commands.has_any_role("admin", "moderator")
     async def unmute(self, ctx, member: discord.Member):
         await member.timeout(None)
         await ctx.send(f"{member.mention} can has been unmuted.")
@@ -44,6 +44,38 @@ class Admin(commands.Cog):
     async def timeout_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send("You don't have permissions to write this command.")
+
+
+    @commands.command(name="ban")
+    @commands.has_role("admin")
+    async def ban(self, ctx, member: discord.Member, *, reason):
+        try:
+            try:
+                await member.send(f"You have been baned on {ctx.guild.name} server. Reason: {reason}")
+            except:
+                pass
+
+            await member.ban(reason=reason)
+
+            embed = discord.Embed(
+                title="Ban",
+                description=f"{member} has been banned.",
+                color=discord.Color.dark_red()
+            )
+            embed.set_thumbnail(url=member.display_avatar.url)
+            embed.add_field(name="Admin", value=ctx.author.mention)
+            embed.add_field(name="Reason", value=reason)
+
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            await ctx.send(f"You can't ban: {e}")
+    @ban.error
+    async def ban_error(self, ctx, error):
+        if isinstance(error, commands.MissingPermissions):
+            await ctx.send("You can't ban someone.")
+        elif isinstance(error, commands.MemberNotFound):
+            await ctx.send("User not found.")
 
 async def setup(bot):
     await bot.add_cog(Admin(bot))
