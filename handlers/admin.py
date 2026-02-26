@@ -15,7 +15,6 @@ class Admin(commands.Cog):
         if isinstance(error, commands.MissingRole):
             await ctx.send(f"{ctx.author.mention}, you're not an admin.", delete_after=6)
 
-
     @commands.command(name="mute")
     @commands.has_any_role("admin", "moderator")
     async def timeout(self, ctx, member: discord.Member, minutes: int, *, reason:str):
@@ -44,7 +43,6 @@ class Admin(commands.Cog):
     async def timeout_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send("You don't have permissions to write this command.")
-
 
     @commands.command(name="ban")
     @commands.has_role("admin")

@@ -1,6 +1,5 @@
 .env
 config.json
-common_test.py
 
 venv/
 .venv/
