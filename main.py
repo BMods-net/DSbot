@@ -13,9 +13,9 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 async def load_extensions():
-    for filename in os.listdir('./handlers'):
+    for filename in os.listdir('./routers'):
         if filename.endswith('.py'):
-            await bot.load_extension(f'handlers.{filename[:-3]}')
+            await bot.load_extension(f'routers.{filename[:-3]}')
             print(f'Module {filename} completed')
 
 async def main():
